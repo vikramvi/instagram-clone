@@ -21,7 +21,7 @@ export default function SignUp() {
 
         const userNameExists = await doesUserNameExists(userName);
 
-        console.log(userNameExists);
+        //console.log(userNameExists);
 
         if (!userNameExists.length) {
             try {

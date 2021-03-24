@@ -5,7 +5,7 @@ import UserContext from "../context/user";
 export default function useUser() {
     const [activeUser, setActiveUser] = useState({});
     const { user } = useContext(UserContext)
-    console.log("user", user);
+    //console.log("user", user);
 
     useEffect(() => {
         async function getUserObjByUserId() {
