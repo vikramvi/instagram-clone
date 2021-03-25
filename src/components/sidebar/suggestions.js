@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { getSuggestedProfiles } from "../../services/firebase";
+import SuggestedProfile from "./suggested-profile";
 
-export default function Suggestions({ userId, following }) {
+export default function Suggestions({ userId, following, loggedInUserDocId }) {
     //getSuggestedProfiles - firebase service
     //call the async function within useEffect
     //store it in a state
@@ -15,21 +16,21 @@ export default function Suggestions({ userId, following }) {
 
         async function suggestedProfiles() {
             const response = await getSuggestedProfiles(userId, following);
-            console.log("response", response);
-            //if (response) {
+            //console.log("response", response);
+
             setProfiles(response);
-            //}
         }
 
-        console.log("suggestions userId", userId);
+        //console.log("suggestions userId", userId);
 
         if (userId) {
             suggestedProfiles();
-
-            console.log("suggestions profiles", profiles);
+            //console.log("suggestions profiles", profiles);
         }
 
     }, [userId]);
+
+    console.log("suggestions profiles", profiles);
 
     return (!profiles ? (
         <Skeleton count={1} height={150} className="mt-5" />
@@ -40,15 +41,16 @@ export default function Suggestions({ userId, following }) {
             </div>
             <div className="mt-4 grid gap-5">
                 {
-                    // profiles.map((profile) => (
-                    //     <SuggestedProfile
-                    //         key={profile.docId}
-                    //         userDocId={profile.docId}
-                    //         username={profile.username}
-                    //         profileId={profile.userId}
-                    //         userId={userId}
-                    //     />
-                    // ))
+                    profiles.map((profile) => (
+                        <SuggestedProfile
+                            key={profile.docId}
+                            spDocId={profile.docId}
+                            username={profile.username}
+                            profileId={profile.userId}
+                            userId={userId}
+                            loggedInUserDocId={loggedInUserDocId}
+                        />
+                    ))
                 }
             </div>
         </div>
@@ -57,5 +59,6 @@ export default function Suggestions({ userId, following }) {
 
 Suggestions.propTypes = {
     userId: PropTypes.string,
-    following: PropTypes.array
+    following: PropTypes.array,
+    loggedInUserDocId: PropTypes.string
 };
