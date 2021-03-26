@@ -30,7 +30,7 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
 
     }, [userId]);
 
-    console.log("suggestions profiles", profiles);
+    //console.log("suggestions profiles", profiles);
 
     return (!profiles ? (
         <Skeleton count={1} height={150} className="mt-5" />
