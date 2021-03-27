@@ -1,11 +1,18 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
 import Header from "./header";
+import Image from "./image";
+
 
 export default function Post({ content }) {
     //console.log("content", content);
     //Components - header, image, actions ( like & comment icons), footer, comments
-    return <Header username={content.username} />;
+    return (
+        <div className="rounded col-span-4 border bg-white border-gray-primary mb-12">
+            <Header username={content.username} />
+            <Image src={content.imageSrc} caption={content.caption} />
+        </div>
+    );
 }
 
 Post.propTypes = {
@@ -17,6 +24,6 @@ Post.propTypes = {
         userLikedPhoto: PropTypes.bool.isRequired,
         likes: PropTypes.array.isRequired,
         comments: PropTypes.array.isRequired,
-        dateCreate: PropTypes.number.isRequired
+        dateCreated: PropTypes.number.isRequired
     })
 }
