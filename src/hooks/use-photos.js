@@ -14,7 +14,7 @@ export default function usePhotos() {
         async function getTimelinePhotos() {
             const [{ following }] = await getUserByUserId(userId);
 
-            console.log("following", following);
+            //console.log("following", following);
 
             let followedUserPhotos = [];
 
