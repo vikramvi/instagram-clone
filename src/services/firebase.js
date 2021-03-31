@@ -28,10 +28,10 @@ export async function getUserByUsername(username) {
 }
 
 export async function getUserByUserId(userId) {
-    const result = await firebase.
-        firestore().
-        collection('users').
-        where('userId', '==', userId).get();
+    const result = await firebase
+        .firestore()
+        .collection('users')
+        .where('userId', '==', userId).get();
     //console.log("firebase result", result);
 
     const user = result.docs.map((item) => ({
@@ -119,4 +119,25 @@ export async function getPhotos(userId, following) {
     );
 
     return photosWithUserDetails;
+}
+
+export async function getUserIdByUsername(username) {
+
+}
+
+export async function getUserPhotosByUsername(username) {
+    const [user] = await getUserByUsername(username);
+    //console.log("userId", userId);
+
+    const result = await firebase
+        .firestore()
+        .collection("photos")
+        .where("userId", "==", user.userId)
+        .get();
+
+    return result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }));
+
 }
