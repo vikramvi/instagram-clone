@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 //child components
 import Header from "./header";
+import Photos from "./photos";
 
 //firebase db calls
 import { getUserPhotosByUsername } from "../../services/firebase";
@@ -30,25 +31,28 @@ export default function Profile({ user }) {
             //console.log("user", user);
 
             const photos = await getUserPhotosByUsername(user.username);
-            console.log("photos", photos);
+            //console.log("photos", photos);
 
-            // dispatch({
-            //     profile: user,
-            //     photosCollection: photos,
-            //     followerCount: user.followes.length
-            // });
+            dispatch({
+                profile: user,
+                photosCollection: photos,
+                followerCount: user.followers.length
+            });
         }
 
-        if (user.username) {
-            getProfileInfoAndPhotos();
-        }
+        getProfileInfoAndPhotos();
 
     }, [user.username]);
 
     return (
         <>
-            <Header />
-            <p>Hello {user.username}</p>
+            <Header
+                photosCount={photosCollection ? photosCollection.length : 0}
+                profile={profile}
+                followerCount={followerCount}
+                setFollowerCount={dispatch}
+            />
+            <Photos photos={photosCollection} />
         </>
     );
 

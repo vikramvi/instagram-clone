@@ -9,21 +9,18 @@ import UserProfile from "../components/profile"; //user profile related header
 export default function Profile() {
     const { username } = useParams();
     //console.log("username", username);
-    const [userExists, setUserExists] = useState(false);
     const [user, setUser] = useState(null);
 
     const history = useHistory();
 
     useEffect(() => {
         async function checkUserExists() {
-            const user = await getUserByUsername(username);
+            const [user] = await getUserByUsername(username);
             //console.log("user", user);
 
-            if (user.length > 0) {
-                setUser(user[0]);
-                setUserExists(true);
+            if (user.userId) {
+                setUser(user);
             } else {
-                setUserExists(false);
                 history.push(ROUTES.NOT_FOUND);
             }
         }
@@ -31,11 +28,10 @@ export default function Profile() {
         checkUserExists();
     }, [username, history]);
 
-    return userExists ? (
+    return user?.username ? (
         <div className="by-gray-background">
             <Header />
             <div className="mx-auto max-w-screen-lg">
-                {user.fullName}
                 <UserProfile user={user} />
             </div>
 
