@@ -18,7 +18,7 @@ export default function Profile() {
             const [user] = await getUserByUsername(username);
             //console.log("user", user);
 
-            if (user.userId) {
+            if (user?.userId) {
                 setUser(user);
             } else {
                 history.push(ROUTES.NOT_FOUND);
