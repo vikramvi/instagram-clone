@@ -44,7 +44,7 @@ export default function SignUp() {
                         username: userName.toLowerCase(),
                         fullName,
                         emailAddress: emailAddress.toLowerCase(),
-                        following: ['2'],
+                        following: [],
                         followers: [],
                         dateCreated: Date.now()
                     });
@@ -85,7 +85,7 @@ export default function SignUp() {
                         <input
                             aria-label="Enter your User Name"
                             type="text"
-                            placeholder="User Name"
+                            placeholder="Username"
                             className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                             onChange={({ target }) => { setUserName(target.value) }}
                             value={userName}
@@ -93,7 +93,7 @@ export default function SignUp() {
                         <input
                             aria-label="Enter your Full Name"
                             type="text"
-                            placeholder="Enter your Full Name"
+                            placeholder="Full name"
                             className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                             onChange={({ target }) => { setFullName(target.value) }}
                             value={fullName}
