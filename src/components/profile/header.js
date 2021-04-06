@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
+
 import useUser from "../../hooks/use-user"
 import { isUserFollowingProfile, toggleFollow } from "../../services/firebase";
+import UserContext from "../../context/user";
 
 export default function Header({
     photosCount,
@@ -12,14 +14,18 @@ export default function Header({
         docId: profileDocId,
         userId: profileUserId,
         fullName,
-        following = [],
-        followers = [],
-        username: profilUsername
+        following,
+        followers,
+        username: profileUsername
     }
 }) {
-    const { user } = useUser();
+    const { user: loggedInUser } = useContext(UserContext);
+    //console.log("loggedInUser", loggedInUser);
+    const { user } = useUser(loggedInUser?.uid);
+    //console.log("user", user);
+
     const [isFollowingProfile, setIsFollowingProfile] = useState(false)
-    const activeBtnFollow = user.username && user.username !== profilUsername;
+    const activeBtnFollow = user?.username && user?.username !== profileUsername;
 
     const handleToggleFollow = async () => {
         setIsFollowingProfile((isFollowingProfile) => { return !isFollowingProfile; });
@@ -42,26 +48,33 @@ export default function Header({
             setIsFollowingProfile(isFollowing);
         }
 
-        if (user.username && profileUserId) {
+        if (user?.username && profileUserId) {
             isLoggedInUserFollowingProfile();
         }
 
-    }, [user.username, profileUserId]);
+    }, [user?.username, profileUserId]);
+
+    //console.log("user", user);
 
     return (
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-            <div className="container flex justify-center">
-                {user.username &&
+            <div className="container flex justify-center items-center">
+                {profileUsername ?
                     (<img
                         className="rounded-full h-40 w-40 flex"
-                        alt={`${profilUsername} profile picture`}
-                        src={`/images/avatars/${profilUsername}.jpg`}
+                        alt={`${profileUsername} profile picture`}
+                        src={`/images/avatars/${profileUsername}.jpg`}
+                    />) :
+                    (<img
+                        className="rounded-full h-40 w-40 flex"
+                        alt={`vikramvi profile picture`}
+                        src={`/images/avatars/vikramvi.jpg`}
                     />)
                 }
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
                 <div className="container flex items-center">
-                    <p className="text-2xl mr-4">{profilUsername}</p>
+                    <p className="text-2xl mr-4">{profileUsername}</p>
                     {activeBtnFollow && (
                         <button
                             className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"

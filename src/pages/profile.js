@@ -25,6 +25,8 @@ export default function Profile() {
             }
         }
 
+        //console.log("user", user);
+
         checkUserExists();
     }, [username, history]);
 
