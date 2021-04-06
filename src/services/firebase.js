@@ -39,7 +39,7 @@ export async function getUserByUserId(userId) {
         docId: item.id
     }));
 
-    //  console.log("firebase user", user);
+    //console.log("firebase user", user);
 
     return user;
 }

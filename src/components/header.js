@@ -11,6 +11,7 @@ export default function Header() {
     const { user } = useUser(loggedInUser?.uid);
 
     const { firebase } = useContext(FirebaseContext);
+    const history = useHistory();
 
     //const history = useHistory();
 
@@ -54,12 +55,12 @@ export default function Header() {
                                     title="Sign Out"
                                     onClick={() => {
                                         firebase.auth().signOut();
-                                        //history.push(ROUTES.LOGIN);
+                                        history.push(ROUTES.LOGIN);
                                     }}
                                     onKeyDown={(event) => {
                                         if (event.key === 'Enter') {
                                             firebase.auth().signOut();
-                                            //history.push(ROUTES.LOGIN);
+                                            history.push(ROUTES.LOGIN);
                                         }
                                     }}
                                 >
