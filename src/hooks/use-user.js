@@ -3,6 +3,7 @@ import { getUserByUserId } from '../services/firebase';
 import UserContext from "../context/user";
 
 export default function useUser(userId) {
+    //console.log("userId", userId);
     const [activeUser, setActiveUser] = useState({});
     //const { user } = useContext(UserContext)
     //console.log("user", user);
