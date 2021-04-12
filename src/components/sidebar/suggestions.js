@@ -38,7 +38,7 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
         <div className="rounded flex flex-col">
             {/*console.log("profiles", profiles)*/}
             <div className="text-sm flex items-center align-items justify-between mb-2">
-                <p className="font-bold text-gray-base">Suggestions For you</p>
+                <p className="font-bold text-gray-base">Suggestions for you</p>
             </div>
             <div className="mt-4 grid gap-5">
                 {

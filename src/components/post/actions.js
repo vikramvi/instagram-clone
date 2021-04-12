@@ -32,6 +32,7 @@ export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }) 
             <div className="flex justify-between p-4">
                 <div className="flex">
                     <svg
+                        data-testid={`like-photo-${docId}`}
                         onClick={handleToggleLiked}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -52,6 +53,7 @@ export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }) 
                         />
                     </svg>
                     <svg
+                        data-testid={`focus-input-${docId}`}
                         onClick={handleFocus}
                         onKeyDown={(event) => {
                             if (event.key === "Enter") {

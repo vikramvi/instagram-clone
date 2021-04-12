@@ -31,7 +31,7 @@ describe("<Dashboard/>", () => {
                 useUser.mockImplementation(() => ({ user: userFixture }));
 
                 const firebase = {
-                    firebase: jest.fn(() => ({
+                    firestore: jest.fn(() => ({
                         collection: jest.fn(() => ({
                             doc: jest.fn(() => ({
                                 update: jest.fn(() => Promise.resolve("User added"))
@@ -40,9 +40,14 @@ describe("<Dashboard/>", () => {
                     }))
                 };
 
-                const { getByText } = render(
+                const fieldValues = {
+                    arrayUnion: jest.fn(),
+                    arrayRemove: jest.fn()
+                }
+
+                const { getByText, getByTestId, getByTitle, getAllByText, getByAltText } = render(
                     <Router>
-                        <FirebaseContext.Provider value={{ firebase }}>
+                        <FirebaseContext.Provider value={{ firebase, FieldValue: fieldValues }}>
                             <UserContext.Provider
                                 value={{ user: { uid: "BKBRWdiULzS3fDtSMnG9raHrFNo2", displayName: "karl" } }}>
                                 <LoggedInUserContext.Provider
@@ -55,6 +60,21 @@ describe("<Dashboard/>", () => {
                         </FirebaseContext.Provider>
                     </Router>
                 );
+
+                await waitFor(() => {
+                    expect(document.title).toEqual("Instagram");
+                    expect(getByTitle("Sign Out")).toBeTruthy();
+                    expect(getAllByText("raphael")).toBeTruthy();
+                    expect(getByAltText("Instagram")).toBeTruthy();
+                    expect(getByAltText("karl profile")).toBeTruthy();
+                    expect(getAllByText("Saint George and the Dragon")).toBeTruthy();
+                    expect(getByText("Suggestions for you")).toBeTruthy();
+
+                    fireEvent.click(getByText("follow"));
+
+                    fireEvent.click(getByTestId("like-photo-siWZDSB7IhihVBVE3cj9"));
+                    //fireEvent.click(getByTestId("focus-input-H9NsQq2PIidbMjvgvoyj"));
+                });
             });
         });
 });
