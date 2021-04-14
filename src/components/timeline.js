@@ -16,7 +16,7 @@ export default function Timeline() {
     //if the user has no photos, tell them to create some photos
 
     return (
-        <div className="container col-span-2">
+        <div className="col-span-3 lg:col-span-2">
             {!photos ?
                 (<Skeleton count={4} width={640} height={500} className="mb-5" />)
                 :

@@ -13,7 +13,7 @@ export default function Sidebar() {
     //console.log('Sidebar docId', docId);
 
     return (
-        <div className="p-4">
+        <div className="hidden lg:block p-4">
             <User username={username} fullName={fullName} />
             <Suggestions userId={userId} following={following} loggedInUserDocId={docId} />
         </div>
