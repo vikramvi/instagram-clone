@@ -61,12 +61,12 @@ export default function Header({
             <div className="container flex justify-center items-center">
                 {profileUsername ?
                     (<img
-                        className="rounded-full h-40 w-40 flex"
+                        className="rounded-full h-16 w-16 md:h-20 lg:h-40 md:w-20 lg:w-40 flex"
                         alt={`${profileUsername} profile picture`}
                         src={`/images/avatars/${profileUsername}.jpg`}
                     />) :
                     (<img
-                        className="rounded-full h-40 w-40 flex"
+                        className="rounded-full h-16 w-16 md:h-20 lg:h-40 md:w-20 lg:w-40 flex"
                         alt={`vikramvi profile picture`}
                         src={`/images/avatars/vikramvi.jpg`}
                     />)
@@ -85,7 +85,7 @@ export default function Header({
 
                     )}
                 </div>
-                <div className="container flex mt-4">
+                <div className="container flex mt-4 flex-col lg:flex-row">
                     {followers === undefined || following === undefined ?
                         (<Skeleton count={1} width={677} height={24} />) :
                         (
