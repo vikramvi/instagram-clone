@@ -150,6 +150,27 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
+                <div className="flex flex-row items-stretch justify-center flex-grow-0 flex-shrink-0 my-3">
+                    <div className="text-xs">
+                        <span>
+                            <div className="flex flex-row">
+                                <span>
+                                    English
+                                </span>
+                                <div className="text-xs leading-3 ml-1">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 48 48" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div className="text-xs ml-4">
+                        © 2021 Instagram from Facebook
+                    </div>
+                </div>
             </footer>
         </section>
     );
