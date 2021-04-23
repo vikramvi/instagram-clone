@@ -150,15 +150,15 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row items-stretch justify-center flex-grow-0 flex-shrink-0 my-3">
-                    <div className="text-xs items-stretch block flex-col flex-shrink-0 leading-3">
-                        <span className="inline-block relative cursor-pointer justify-center leading-3">
-                            <div className="flex flex-row relative justify-center items-center flex-shrink-0 text-xs leading-3">
-                                <span>
+                <div className="flex flex-row flex-auto relative justify-center my-1.5 items-stretch flex-grow-0 flex-shrink-0 my-3">
+                    <div className="flex flex-col text-xs items-stretch block relative flex-shrink-0 leading-3">
+                        <span className="inline-block relative">
+                            <div className=" flex flex-row leading-none">
+                                <span className="">
                                     English
                                 </span>
-                                <div className="flex flex-start relative text-xs leading-3 ml-1 items-stretch">
-                                    <span>
+                                <div className="ml-0.5">
+                                    <span className="">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 48 48" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
