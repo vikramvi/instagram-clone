@@ -89,6 +89,19 @@ export default function Login() {
                                     Login
                                 </button>
                             </form>
+                            <div className="w-full box-border flex flex-row text-sm p-0 mx-10 mt-2.5 mb-5 relative">
+                                <div className="flex flex-col flex-grow	flex-shrink	 relative top-1.5 h-0 box-border  top-1.5  border border-solid border-black align-baseline p-0  w-full"></div>
+                                <div className="flex flex-col flex-grow-0 flex-shrink-0 relative mx-5 text-xs align-baseline p-0">OR</div>
+                                <div className="flex flex-col flex-grow	flex-shrink	 relative   top-1.5 h-0 border border-solid border-black align-baseline p-0  w-full"></div>
+                            </div>
+                            <Link
+                                className="text-center leading-3 text-xs text-indigo-600"
+                                to={ROUTES.PASSWORD_RESET}
+                            >
+                                Forgot Password ?
+                            </Link>
+
+
                         </div>
                         <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
                             <p className="text-sm">
