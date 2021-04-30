@@ -24,6 +24,9 @@ module.exports = {
                 red: {
                     primary: '#ed4956'
                 }
+            },
+            spacing: {
+                '128': '32rem', // following the standard of 128 / 4 = 32
             }
         }
     },
