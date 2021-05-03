@@ -1,7 +1,7 @@
 import { useHistory, Link } from "react-router-dom";
-import FirebaseContext from "../context/firebase";
 import { useState, useEffect, useContext } from "react";
 
+import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
 import { doesUserNameExists } from "../services/firebase";
 import LoginFooter from "../components/loginFooter";
@@ -27,17 +27,24 @@ export default function SignUp() {
 
         if (!userNameExists.length) {
             try {
+
+                //firebase auth method 
+                //https://firebase.google.com/docs/reference/js/firebase.auth.Auth#createuserwithemailandpassword
                 const createdUserResult = await firebase
                     .auth()
                     .createUserWithEmailAndPassword(emailAddress, password);
 
                 // authentication
                 // -> emailAddress & password & username (displayName)
+                // https://firebase.google.com/docs/auth/web/manage-users
+                // Update a user's profile
                 await createdUserResult.user.updateProfile({
                     displayName: userName
                 });
 
                 // firebase user collection (create a document)
+                //https://firebase.google.com/docs/firestore/manage-data/add-data#web-v8_8
+                // Add a new document with a generated id.
                 await firebase
                     .firestore()
                     .collection('users')
@@ -53,9 +60,13 @@ export default function SignUp() {
 
                 history.push(ROUTES.DASHBOARD);
             } catch (error) {
+                //reset input fields
+                setUserName('');
                 setFullName('');
                 setEmailAddress('');
                 setPassword('');
+
+                //set error value
                 setError(error.message);
             }
         } else {
@@ -112,7 +123,7 @@ export default function SignUp() {
                                     aria-label="Enter your email address"
                                     type="email"
                                     size="40"
-                                    pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                                    pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                                     required
                                     placeholder="Email address"
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
@@ -127,6 +138,8 @@ export default function SignUp() {
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setPassword(target.value) }}
                                     value={password}
+                                    minlength="6"
+                                    maxlength="15"
                                 />
                                 <button
                                     disabled={isInvalid}
