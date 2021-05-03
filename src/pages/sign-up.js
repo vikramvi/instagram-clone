@@ -94,6 +94,7 @@ export default function SignUp() {
                                     aria-label="Enter your User Name"
                                     type="text"
                                     placeholder="Username"
+                                    required
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setUserName(target.value) }}
                                     value={userName}
@@ -102,13 +103,17 @@ export default function SignUp() {
                                     aria-label="Enter your Full Name"
                                     type="text"
                                     placeholder="Full name"
+                                    required
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setFullName(target.value) }}
                                     value={fullName}
                                 />
                                 <input
                                     aria-label="Enter your email address"
-                                    type="text"
+                                    type="email"
+                                    size="40"
+                                    pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                                    required
                                     placeholder="Email address"
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setEmailAddress(target.value) }}
@@ -118,6 +123,7 @@ export default function SignUp() {
                                     aria-label="Enter your password"
                                     type="password"
                                     placeholder="Password"
+                                    required
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setPassword(target.value) }}
                                     value={password}
