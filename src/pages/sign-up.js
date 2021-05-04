@@ -98,6 +98,16 @@ export default function SignUp() {
                                 <img src="/images/logo.png" alt="instagram" className="mt-2 mb-4 w-6/12" />
                             </h1>
 
+                            <button className="flex justify-center w-full bg-blue-400 mx-10 my-2 text-sm text-white px-2 py-1.5">
+                                Log in with Facebook
+                            </button>
+
+                            <div className="flex justify-center items-center w-full mt-4 mb-4">
+                                <div className="flex-grow h-0.5 border"></div>
+                                <div className="text-center mx-3.5 my-0 flex-grow-0 text-sm font-semibold"> OR </div>
+                                <div className="flex-grow h-0.5 border"></div>
+                            </div>
+
                             {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
 
                             <form onSubmit={handleSignUp} method="POST">
