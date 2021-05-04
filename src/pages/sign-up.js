@@ -151,7 +151,7 @@ export default function SignUp() {
                                 </button>
                             </form>
                         </div>
-                        <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
+                        <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary mb-4">
                             <p className="text-sm">
                                 Have an account?{` `}
                                 <Link
@@ -162,6 +162,34 @@ export default function SignUp() {
                                     Login
                                 </Link>
                             </p>
+                        </div>
+                        <div className="flex flex-col justify-center items-center w-full">
+                            <p className="text-sm my-2.5 mx-5">
+                                Get the app.
+                            </p>
+                            <div className="flex flex-row w-full justify-center items-center my-2.5">
+                                <a
+                                    href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&ct=igweb.loginPage.badge&mt=8&vt=lo"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mr-2"
+                                >
+                                    <img
+                                        src="/images/AppStore.png"
+                                        className="h-10"
+                                    />
+                                </a>
+                                <a
+                                    href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DAC8B5777-4DDC-4F46-8F5C-CC3B64CFAF03%26utm_content%3Dlo%26utm_medium%3Dbadge"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="/images/GooglePlay.png"
+                                        className="h-10"
+                                    />
+                                </a>
+                            </div>
                         </div>
 
                     </div>
