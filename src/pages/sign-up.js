@@ -18,6 +18,11 @@ export default function SignUp() {
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '';
 
+    const [isButtonClicked, setButtonLoading] = useState(false);
+    const toggleButtonClicked = () => {
+        setButtonLoading(isButtonClicked => !isButtonClicked);
+    }
+
     const handleSignUp = async (event) => {
         event.preventDefault();
 
@@ -68,10 +73,12 @@ export default function SignUp() {
 
                 //set error value
                 setError(error.message);
+                toggleButtonClicked();
             }
         } else {
             setUserName('');
             setError('That username is already taken, please try another.');
+            toggleButtonClicked();
         }
 
     };
@@ -148,16 +155,19 @@ export default function SignUp() {
                                     className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                     onChange={({ target }) => { setPassword(target.value) }}
                                     value={password}
-                                    minlength="6"
-                                    maxlength="15"
+                                    minLength="6"
+                                    maxLength="15"
                                 />
                                 <button
                                     disabled={isInvalid}
                                     type="submit"
                                     className={`bg-blue-medium text-white w-full rounded h-8 font-bold
-                                    ${isInvalid && 'opacity-50'}`}
+                                    ${isInvalid && 'opacity-50'}
+                                    ${isInvalid && 'cursor-default'}
+                                    `}
+                                    onClick={toggleButtonClicked}
                                 >
-                                    Sign Up
+                                    {!isButtonClicked ? "Sign Up" : "Loading..."}
                                 </button>
                             </form>
                         </div>
