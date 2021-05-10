@@ -65,25 +65,28 @@ export default function Header({
                         alt={`${profileUsername} profile picture`}
                         src={`/images/avatars/${profileUsername}.jpg`}
                     />) :
-                    (<img
-                        className="rounded-full h-16 w-16 md:h-20 lg:h-40 md:w-20 lg:w-40 flex"
-                        alt={`vikramvi profile picture`}
-                        src={`/images/avatars/vikramvi.jpg`}
-                    />)
+                    (<Skeleton count={1} duration={5} height={160} width={160} />)
                 }
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
                 <div className="container flex items-center">
-                    <p className="text-2xl mr-4">{profileUsername}</p>
-                    {activeBtnFollow && (
-                        <button
-                            className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
-                            onClick={handleToggleFollow}
-                        >
-                            {isFollowingProfile ? "Unfollow" : "follow"}
-                        </button>
+                    <p className="text-2xl mr-4">
+                        {profileUsername === undefined ?
+                            <Skeleton count={2} duration={10} height={30} width={75} /> :
+                            profileUsername
+                        }
+                    </p>
 
-                    )}
+                    {activeBtnFollow === undefined ?
+                        <Skeleton count={2} duration={10} height={30} width={75} /> :
+                        (
+                            <button
+                                className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
+                                onClick={handleToggleFollow}
+                            >
+                                {isFollowingProfile ? "Unfollow" : "follow"}
+                            </button>
+                        )}
                 </div>
                 <div className="container flex mt-4 flex-col lg:flex-row">
                     {followers === undefined || following === undefined ?
