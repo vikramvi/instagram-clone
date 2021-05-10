@@ -18,13 +18,12 @@ export default function SignUp() {
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '';
 
-    const [isButtonClicked, setButtonLoading] = useState(false);
-    const toggleButtonClicked = () => {
-        setButtonLoading(isButtonClicked => !isButtonClicked);
-    }
+    const [buttonLoading, setButtonLoading] = useState(false);
+   
 
     const handleSignUp = async (event) => {
         event.preventDefault();
+        setButtonLoading(true)
 
         const userNameExists = await doesUserNameExists(userName);
 
@@ -73,13 +72,12 @@ export default function SignUp() {
 
                 //set error value
                 setError(error.message);
-                toggleButtonClicked();
             }
         } else {
             setUserName('');
             setError('That username is already taken, please try another.');
-            toggleButtonClicked();
         }
+        setButtonLoading(false)
 
     };
 
@@ -165,9 +163,8 @@ export default function SignUp() {
                                     ${isInvalid && 'opacity-50'}
                                     ${isInvalid && 'cursor-default'}
                                     `}
-                                    onClick={toggleButtonClicked}
                                 >
-                                    {!isButtonClicked ? "Sign Up" : "Loading..."}
+                                    {buttonLoading ? "Loading..." : "Sign Up"}
                                 </button>
                             </form>
                         </div>
