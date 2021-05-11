@@ -3,28 +3,47 @@ import Skeleton from "react-loading-skeleton";
 
 export default function Photos({ photos }) {
 
-    //console.log(photos);
+    //console.log("photos", photos);
 
     return (
         <div className="h-16 border-t border-gray-primary mt-12 px-4 lg:px-0">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4 mb-12">
                 {
-                    !photos ?
+                    photos.length === 0 ?
                         (
                             <>
-                                <Skeleton count={12} width={320} height={400} />
-                            </>
-                        )
+                                <div
+                                    className="relative group h-72 w-72"
+                                >
+                                    <Skeleton count={20} width={300} height={300} />
+                                </div>
+                                <div
+                                    className="relative group h-72 w-72"
+                                >
+                                    <Skeleton count={20} width={300} height={300} />
+                                </div>
+                                <div
+                                    className="relative group h-72 w-72"
+                                >
+                                    <Skeleton count={20} width={300} height={300} />
+                                </div>
+                            </>)
                         : photos.length > 0 ?
                             (
                                 photos.map((photo) => (
                                     <div
                                         key={photo.docId}
-                                        className="relative group"
+                                        className="relative group h-72 w-72"
                                     >
-                                        <img src={photo.imageSrc} alt={photo.caption} />
+                                        <img src={photo.imageSrc} alt={photo.caption}
+                                            className="w-full h-full group-hover:opacity-70"
+                                        />
 
-                                        <div className="absolute bottom-0 left-0 bg-gray-200 z-10 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex hidden">
+                                        <div
+                                            className="hidden absolute bottom-0 left-0 z-10 w-full justify-evenly items-center 
+                                            h-full cursor-pointer 
+                                            group-hover:flex"
+                                        >
                                             <p className="flex items-center text-white font-bold">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
